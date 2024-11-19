@@ -45,7 +45,6 @@ class UserController extends Controller
         $user->fill($request->all());
         $user->save();
     }
-
     /**
      * Remove the specified resource from storage.
      */
@@ -53,7 +52,6 @@ class UserController extends Controller
     {
         User::find($id)->delete();
     }
-
     //nem alap lekérdezések
     public function updatePassword(Request $request, $id)
     {
@@ -75,5 +73,7 @@ class UserController extends Controller
         ->where('id','=', $user->id)
         ->get();
     }
-
+    public function usersReservation(){
+        return User::with('usersReservation')->get();
+    }
 }

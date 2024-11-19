@@ -128,5 +128,13 @@ class LendingController extends Controller
         ->get();
         return $books;
     }
-    
+    public function reservationLending(){
+        $user = Auth::user();
+        $books = DB::table('lendings as l')->join('copies as c', 'l.copy_id', 'c.copy_id')->join('books as b', 'b.book_id', 'b.book_id')->select('author','title')
+        ->where('user_id',$user->id)
+        ->whereNull('end')
+        ->whereRaw('DATEDIFF(CURRENT_DATE,start)>21')
+        ->get();
+        return $books;
+    }
 }
