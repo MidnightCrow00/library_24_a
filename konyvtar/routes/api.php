@@ -39,6 +39,8 @@ Route::middleware(['auth:sanctum'])
 
         Route::get('/reserved-books',[ReservationController::class, 'reservedBooks']);
         Route::get('/reserved-count',[ReservationController::class, 'reservedCount']);
+        Route::get('/reservation-lending',[LendingController::class, 'reservationLending']);
+
         // Kijelentkezés útvonal
         Route::post('/logout', [AuthenticatedSessionController::class, 'destroy']);
     });
